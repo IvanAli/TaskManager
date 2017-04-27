@@ -93,11 +93,10 @@ public class Application {
             public void actionPerformed(ActionEvent actionEvent) {
                 int selectedIndex = taskJList.getSelectedIndex();
                 if (selectedIndex == -1) {
-                    JOptionPane.showMessageDialog(null, "You have not selected a task yet");
+                    JOptionPane.showMessageDialog(mainPanel, "You have not selected a task yet");
                     return;
                 }
                 try {
-//                    Task task = taskManager.getTaskAtIndex(selectedIndex);
                     timerThread.startTimers();
                 } catch (Exception e) {};
 
@@ -108,11 +107,10 @@ public class Application {
             public void actionPerformed(ActionEvent actionEvent) {
                 int selectedIndex = taskJList.getSelectedIndex();
                 if (selectedIndex == -1) {
-                    JOptionPane.showMessageDialog(null, "You have not selected a task yet");
+                    JOptionPane.showMessageDialog(mainPanel, "You have not selected a task yet");
                     return;
                 }
                 try {
-//                    Task task = taskManager.getTaskAtIndex(selectedIndex);
                     timerThread.stopTimers();
                 } catch (Exception e) {};
 
@@ -123,11 +121,10 @@ public class Application {
             public void actionPerformed(ActionEvent actionEvent) {
                 int selectedIndex = taskJList.getSelectedIndex();
                 if (selectedIndex == -1) {
-                    JOptionPane.showMessageDialog(null, "You have not selected a task yet");
+                    JOptionPane.showMessageDialog(mainPanel, "You have not selected a task yet");
                     return;
                 }
                 try {
-//                    Task task = taskManager.getTaskAtIndex(selectedIndex);
                     timerThread.resetTimers();
                 } catch (Exception e) {};
 
@@ -142,25 +139,10 @@ public class Application {
         });
     }
     private void setTaskListeners() {
-//        MouseListener mouseListener = new MouseAdapter() {
-//            public void mouseClicked(MouseEvent mouseEvent) {
-//                JList theList = (JList) mouseEvent.getSource();
-//                if (mouseEvent.getClickCount() == 2) {
-//                    int index = theList.locationToIndex(mouseEvent.getPoint());
-//                    if (index >= 0) {
-//                        Object o = theList.getModel().getElementAt(index);
-//                        System.out.println("Double-clicked on: " + o.toString());
-//                    }
-//                }
-//            }
-//        };
-//        taskJList.addMouseListener(mouseListener);
-
         ListSelectionListener listSelectionListener = new ListSelectionListener() {
             boolean ok = false;
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
                 boolean adjust = listSelectionEvent.getValueIsAdjusting();
-//                if (adjust) return;
                 if (ok) {
                     ok = false;
                     return;
@@ -182,9 +164,7 @@ public class Application {
                             currentTask = taskManager.getTask(id);
                             stopWatch.associate(currentTask);
                             countdownTimer.associate(currentTask);
-//                        timerThread.setCurrentTask(currentTask);
                         }
-
                     } catch (Exception e) {
                     }
                 }
@@ -195,6 +175,10 @@ public class Application {
         addTaskBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                if (!stopWatch.getIsStopped()) {
+                    JOptionPane.showMessageDialog(mainPanel, "You have not stopped the clock");
+                    return;
+                }
                 String[] priorities = {"High", "Medium", "Low"};
                 JTextField jTaskName = new JTextField();
                 JComboBox<String> jTaskPriority = new JComboBox<>(priorities);
@@ -204,7 +188,7 @@ public class Application {
                         "Priority:", jTaskPriority,
                         "Task Time (in minutes): ", jTaskTime
                 };
-                int option = JOptionPane.showConfirmDialog(null, message, "New task", JOptionPane.OK_CANCEL_OPTION);
+                int option = JOptionPane.showConfirmDialog(mainPanel, message, "New task", JOptionPane.OK_CANCEL_OPTION);
 
                 String taskName = jTaskName.getText();
 
@@ -224,6 +208,8 @@ public class Application {
                         } catch (NumberFormatException e) {
                             JOptionPane.showMessageDialog(mainPanel, "Task time is not a valid number", "Invalid time", JOptionPane.ERROR_MESSAGE);
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(mainPanel, "Task name is empty", "Empty name", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -232,6 +218,10 @@ public class Application {
         modifyTaskBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                if (!stopWatch.getIsStopped()) {
+                    JOptionPane.showMessageDialog(mainPanel, "You have not stopped the clock");
+                    return;
+                }
                 String taskName;
                 int taskTime;
                 Priority taskPriority = Priority.HIGH;
@@ -242,7 +232,7 @@ public class Application {
 
                 int selectedIndex = taskJList.getSelectedIndex();
                 if (selectedIndex == -1) {
-                    JOptionPane.showMessageDialog(null, "You have not selected a task yet");
+                    JOptionPane.showMessageDialog(mainPanel, "You have not selected a task yet");
                     return;
                 }
                 try {
@@ -259,7 +249,7 @@ public class Application {
                         "Priority:", jTaskPriority,
                         "Task Time (in minutes): ", jTaskTime
                 };
-                int option = JOptionPane.showConfirmDialog(null, message, "Modify task", JOptionPane.OK_CANCEL_OPTION);
+                int option = JOptionPane.showConfirmDialog(mainPanel, message, "Modify task", JOptionPane.OK_CANCEL_OPTION);
 
                 taskName = jTaskName.getText();
 
@@ -278,7 +268,6 @@ public class Application {
                                 currentTask = taskManager.modifyTask(id, taskName, taskPriority, taskTime);
                                 stopWatch.associate(currentTask);
                                 countdownTimer.associate(currentTask);
-//                                timerThread.setCurrentTask(currentTask);
                                 System.out.println("Task successfully modified");
                                 updateTaskJList();
                             } catch (Exception e) {
@@ -287,7 +276,8 @@ public class Application {
                         } catch (NumberFormatException e) {
                             JOptionPane.showMessageDialog(mainPanel, "Task time is not a valid number", "Invalid time", JOptionPane.ERROR_MESSAGE);
                         }
-
+                    } else {
+                        JOptionPane.showMessageDialog(mainPanel, "Task name is empty", "Empty name", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -296,14 +286,18 @@ public class Application {
         deleteTaskBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                if (!stopWatch.getIsStopped()) {
+                    JOptionPane.showMessageDialog(mainPanel, "You have not stopped the clock");
+                    return;
+                }
                 int selectedIndex = taskJList.getSelectedIndex();
                 if (selectedIndex == -1) {
-                    JOptionPane.showMessageDialog(null, "You have not selected a task yet");
+                    JOptionPane.showMessageDialog(mainPanel, "You have not selected a task yet");
                     return;
                 }
 
                 String message = "Are you sure you want to delete this task?";
-                int option = JOptionPane.showConfirmDialog(null, message, "Delete task", JOptionPane.OK_CANCEL_OPTION);
+                int option = JOptionPane.showConfirmDialog(mainPanel, message, "Delete task", JOptionPane.OK_CANCEL_OPTION);
 
                 if (option == JOptionPane.OK_OPTION) {
                     try {
@@ -315,13 +309,12 @@ public class Application {
                             currentTask = null;
                             stopWatch.associate(currentTask);
                             countdownTimer.associate(currentTask);
-//                            timerThread.setCurrentTask(currentTask);
                         }
                         taskManager.deleteTask(id);
                         System.out.println("Task successfully deleted");
                         updateTaskJList();
                     } catch (Exception e) {
-
+                        e.printStackTrace();
                     }
                 }
             }

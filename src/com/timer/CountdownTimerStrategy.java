@@ -13,10 +13,8 @@ public class CountdownTimerStrategy implements TimerStrategy {
     private long previousSystemTime;
     private Task task;
     private boolean isStopped;
-    private boolean isReady;
     public CountdownTimerStrategy() {
         this.isStopped = true;
-        this.isReady = false;
     }
     @Override
     public long getInitialTime() {
@@ -35,18 +33,20 @@ public class CountdownTimerStrategy implements TimerStrategy {
         if (task == null) throw new Exception("A task hasn't been associated to this timer yet");
         previousSystemTime = System.currentTimeMillis();
         isStopped = false;
-        isReady = true;
     }
     @Override
     public boolean run() {
-        if (isStopped || !isReady) return false;
+        if (isStopped) return false;
         if (currentTime == targetTime) return false;
         long currentSystemTime = System.currentTimeMillis();
         if (currentSystemTime - previousSystemTime >= SEC) {
             currentTime--;
             previousSystemTime = currentSystemTime;
         }
-        if (currentTime == targetTime) return true;
+        if (currentTime == targetTime) {
+            isStopped = true;
+            return true;
+        }
         return false;
     }
     @Override
@@ -60,6 +60,7 @@ public class CountdownTimerStrategy implements TimerStrategy {
     @Override
     public void associate(Task task) {
         this.task = task;
+        if (task == null) return;
         initialTime = task.getTaskTime();
         targetTime = 0;
         currentTime = initialTime;

@@ -16,12 +16,10 @@ public class StopWatchStrategy implements TimerStrategy {
     private long targetTime;
     private long previousSystemTime;
     private Task task;
-    private boolean isReady;
     private boolean isStopped;
     public StopWatchStrategy() {
         this.mode = LIMITED;
         this.isStopped = true;
-        this.isReady = false;
     }
     public StopWatchStrategy(Mode mode) {
         this.mode = mode;
@@ -43,11 +41,10 @@ public class StopWatchStrategy implements TimerStrategy {
         if (task == null) throw new Exception("A task hasn't been associated to this timer yet");
         previousSystemTime = System.currentTimeMillis();
         isStopped = false;
-        isReady = true;
     }
     @Override
     public boolean run() {
-        if (isStopped || !isReady) return false;
+        if (isStopped) return false;
         long currentSystemTime = System.currentTimeMillis();
         if (currentSystemTime - previousSystemTime >= SEC) {
             if (mode == UNLIMITED || currentTime < targetTime) {
@@ -56,7 +53,10 @@ public class StopWatchStrategy implements TimerStrategy {
                 previousSystemTime = currentSystemTime;
             }
         }
-        if (currentTime == targetTime) return true;
+        if (currentTime == targetTime) {
+            if (mode == LIMITED) isStopped = true;
+            return true;
+        }
         return false;
     }
     @Override
@@ -70,6 +70,7 @@ public class StopWatchStrategy implements TimerStrategy {
     @Override
     public void associate(Task task) {
         this.task = task;
+        if (task == null) return;
         initialTime = 0;
         targetTime = task.getTaskTime();
         currentTime = initialTime;

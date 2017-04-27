@@ -7,31 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8469de5b-780f-4621-84f0-9fb493a0af52" name="Default" comment="Progress so far. Tasks can be added, modified, deleted.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/com/main/Main.class" afterPath="$PROJECT_DIR$/out/production/das/com/main/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/com/task/TaskManager.class" afterPath="$PROJECT_DIR$/out/production/das/com/task/TaskManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/com/timer/CountdownTimerStrategy.class" afterPath="$PROJECT_DIR$/out/production/das/com/timer/CountdownTimerStrategy.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/com/timer/StopWatchStrategy.class" afterPath="$PROJECT_DIR$/out/production/das/com/timer/StopWatchStrategy.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/com/timer/TimeCounter.class" afterPath="$PROJECT_DIR$/out/production/das/com/timer/TimeCounter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/com/timer/TimerStrategy.class" afterPath="$PROJECT_DIR$/out/production/das/com/timer/TimerStrategy.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/com/timer/TimerThread.class" afterPath="$PROJECT_DIR$/out/production/das/com/timer/TimerThread.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/view/Application$1.class" afterPath="$PROJECT_DIR$/out/production/das/view/Application$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/view/Application$2.class" afterPath="$PROJECT_DIR$/out/production/das/view/Application$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/view/Application$3.class" afterPath="$PROJECT_DIR$/out/production/das/view/Application$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/view/Application$4.class" afterPath="$PROJECT_DIR$/out/production/das/view/Application$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/view/Application$5.class" afterPath="$PROJECT_DIR$/out/production/das/view/Application$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/view/Application$6.class" afterPath="$PROJECT_DIR$/out/production/das/view/Application$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/view/Application$7.class" afterPath="$PROJECT_DIR$/out/production/das/view/Application$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/view/Application$8.class" afterPath="$PROJECT_DIR$/out/production/das/view/Application$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/das/view/Application.class" afterPath="$PROJECT_DIR$/out/production/das/view/Application.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tasks.data" afterPath="$PROJECT_DIR$/tasks.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/main/Main.java" afterPath="$PROJECT_DIR$/src/com/main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/task/TaskManager.java" afterPath="$PROJECT_DIR$/src/com/task/TaskManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/timer/CountdownTimerStrategy.java" afterPath="$PROJECT_DIR$/src/com/timer/CountdownTimerStrategy.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/timer/StopWatchStrategy.java" afterPath="$PROJECT_DIR$/src/com/timer/StopWatchStrategy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/timer/TimeCounter.java" afterPath="$PROJECT_DIR$/src/com/timer/TimeCounter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/timer/TimerStrategy.java" afterPath="$PROJECT_DIR$/src/com/timer/TimerStrategy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/timer/TimerThread.java" afterPath="$PROJECT_DIR$/src/com/timer/TimerThread.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Application.java" afterPath="$PROJECT_DIR$/src/view/Application.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -63,7 +41,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TimerThread.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TimerThread.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/timer/TimerThread.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="630">
@@ -75,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Application.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state relative-caret-position="-30">
+              <caret line="310" column="66" lean-forward="false" selection-start-line="310" selection-start-column="66" selection-end-line="310" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -88,13 +66,10 @@
       <file leaf-file-name="TimeCounter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/timer/TimeCounter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
+            <state relative-caret-position="131">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding>
-                <element signature="e#942#943#0" expanded="true" />
-                <element signature="e#988#989#0" expanded="true" />
-                <element signature="e#1016#1017#0" expanded="true" />
-                <element signature="e#1057#1058#0" expanded="true" />
+                <element signature="e#565#566#0" expanded="true" />
                 <element signature="e#1094#1095#0" expanded="true" />
                 <element signature="e#1132#1133#0" expanded="true" />
               </folding>
@@ -105,12 +80,10 @@
       <file leaf-file-name="Task.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/task/Task.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
+            <state relative-caret-position="240">
               <caret line="18" column="43" lean-forward="false" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1655#1656#0" expanded="true" />
-                <element signature="e#1737#1738#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -129,9 +102,12 @@
       <file leaf-file-name="CountdownTimerStrategy.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/timer/CountdownTimerStrategy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
-              <caret line="67" column="32" lean-forward="false" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
-              <folding />
+            <state relative-caret-position="290">
+              <caret line="46" column="29" lean-forward="false" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+              <folding>
+                <element signature="e#395#396#0" expanded="true" />
+                <element signature="e#432#433#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,7 +115,7 @@
       <file leaf-file-name="TaskManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/task/TaskManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
+            <state relative-caret-position="15">
               <caret line="53" column="64" lean-forward="false" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -151,8 +127,8 @@
       <file leaf-file-name="StopWatchStrategy.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/timer/StopWatchStrategy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="51" column="60" lean-forward="false" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
+            <state relative-caret-position="35">
+              <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -180,6 +156,7 @@
       <find>int id</find>
       <find>taskManager</find>
       <find>selectedIndex</find>
+      <find>JOption</find>
     </findStrings>
     <replaceStrings>
       <replace>currentTimeMillis</replace>
@@ -216,13 +193,13 @@
         <option value="$PROJECT_DIR$/src/com/main/Tester.java" />
         <option value="$PROJECT_DIR$/src/com/task/Task.java" />
         <option value="$PROJECT_DIR$/src/com/timer/TimerStrategy.java" />
-        <option value="$PROJECT_DIR$/src/com/timer/CountdownTimerStrategy.java" />
         <option value="$PROJECT_DIR$/src/com/timer/TimeCounter.java" />
         <option value="$PROJECT_DIR$/src/com/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/view/Application.java" />
-        <option value="$PROJECT_DIR$/src/com/timer/StopWatchStrategy.java" />
         <option value="$PROJECT_DIR$/src/com/task/TaskManager.java" />
         <option value="$PROJECT_DIR$/src/com/timer/TimerThread.java" />
+        <option value="$PROJECT_DIR$/src/com/timer/StopWatchStrategy.java" />
+        <option value="$PROJECT_DIR$/src/com/timer/CountdownTimerStrategy.java" />
+        <option value="$PROJECT_DIR$/src/view/Application.java" />
       </list>
     </option>
   </component>
@@ -661,23 +638,24 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32884902" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935917" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.4947839" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.4947839" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -688,7 +666,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -744,10 +721,7 @@
         <state relative-caret-position="345">
           <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
           <folding>
-            <element signature="e#942#943#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
-            <element signature="e#1016#1017#0" expanded="true" />
-            <element signature="e#1057#1058#0" expanded="true" />
+            <element signature="e#565#566#0" expanded="true" />
             <element signature="e#1094#1095#0" expanded="true" />
             <element signature="e#1132#1133#0" expanded="true" />
           </folding>
@@ -760,8 +734,6 @@
           <caret line="18" column="43" lean-forward="true" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1655#1656#0" expanded="true" />
-            <element signature="e#1737#1738#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -778,7 +750,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="855">
           <caret line="67" column="32" lean-forward="true" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
-          <folding />
+          <folding>
+            <element signature="e#395#396#0" expanded="true" />
+            <element signature="e#432#433#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -851,8 +826,6 @@
           <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1655#1656#0" expanded="true" />
-            <element signature="e#1737#1738#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -925,26 +898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/task/Task.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="18" column="43" lean-forward="false" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1655#1656#0" expanded="true" />
-            <element signature="e#1737#1738#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -955,61 +908,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/timer/TimerStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="35" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/timer/TimeCounter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
-          <folding>
-            <element signature="e#942#943#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
-            <element signature="e#1016#1017#0" expanded="true" />
-            <element signature="e#1057#1058#0" expanded="true" />
-            <element signature="e#1094#1095#0" expanded="true" />
-            <element signature="e#1132#1133#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/timer/StopWatchStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="51" column="60" lean-forward="false" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/timer/CountdownTimerStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="67" column="32" lean-forward="false" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/icedtea-sound.jar!/org/classpath/icedtea/pulseaudio/PulseAudioDataLine.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/task/TaskManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="53" column="64" lean-forward="false" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1027,6 +929,75 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/task/TaskManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="53" column="64" lean-forward="false" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/timer/TimerStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="35" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/task/Task.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="43" lean-forward="false" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/timer/TimeCounter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="e#565#566#0" expanded="true" />
+            <element signature="e#1094#1095#0" expanded="true" />
+            <element signature="e#1132#1133#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/timer/StopWatchStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="35">
+          <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/timer/CountdownTimerStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="46" column="29" lean-forward="false" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+          <folding>
+            <element signature="e#395#396#0" expanded="true" />
+            <element signature="e#432#433#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-30">
+          <caret line="310" column="66" lean-forward="false" selection-start-line="310" selection-start-column="66" selection-end-line="310" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
