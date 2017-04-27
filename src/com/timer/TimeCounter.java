@@ -43,4 +43,7 @@ public class TimeCounter {
     public Task getTask() {
         return strategy.getTask();
     }
+    public void setMode(Mode mode) {
+        strategy.setMode(mode);
+    }
 }

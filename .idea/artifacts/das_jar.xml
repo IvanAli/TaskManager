@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="das:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/das_jar</output-path>
+    <root id="archive" name="das.jar">
+      <element id="module-output" name="das" />
+    </root>
+  </artifact>
+</component>

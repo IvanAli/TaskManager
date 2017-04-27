@@ -51,7 +51,7 @@ public class TaskManager implements Serializable {
         if (taskPosition > -1) {
             taskList.get(taskPosition).setName(name);
             taskList.get(taskPosition).setPriority(priority);
-            taskList.get(taskPosition).setTaskTime(taskTime);
+            taskList.get(taskPosition).setTaskTime(taskTime * 60);
             return taskList.get(taskPosition);
         } else {
             throw new Exception();

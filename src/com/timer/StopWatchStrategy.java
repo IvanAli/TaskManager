@@ -78,4 +78,6 @@ public class StopWatchStrategy implements TimerStrategy {
     public boolean getIsStopped() { return isStopped; }
     @Override
     public Task getTask() { return task; }
+    public void setMode(Mode mode) { this.mode = mode; }
+
 }

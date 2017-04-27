@@ -2,9 +2,15 @@ package com.timer;
 
 import com.task.Task;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by ivan on 26/04/17.
@@ -33,6 +39,20 @@ public class TimerThread extends Thread {
         formattedDate = secondsToString(countdownTimer.getCurrentTime());
         countdownLabel.setText(formattedDate);
     }
+    private void playAlarm() {
+        String soundName = "alarm.wav";
+        try {
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(soundName));
+            AudioFormat format = inputStream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            Clip clip = (Clip)AudioSystem.getLine(info);
+            clip.open(inputStream);
+            clip.start();
+        }
+        catch (IOException | LineUnavailableException | UnsupportedAudioFileException e1) {
+            e1.printStackTrace();
+        }
+    }
     @Override
     public void run() {
         while (true) {
@@ -41,7 +61,8 @@ public class TimerThread extends Thread {
                 if (currentTask != null) {
 //                    System.out.println("cur task id: " + currentTask.getId() + " time: " + currentTask.getTaskTime());
                     stopWatch.run();
-                    countdownTimer.run();
+                    boolean isZero = countdownTimer.run();
+                    if (isZero) playAlarm();
                     setLabels();
                 }
             }

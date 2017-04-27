@@ -16,4 +16,5 @@ public interface TimerStrategy {
     public void associate(Task task);
     public boolean getIsStopped();
     public Task getTask();
+    public void setMode(Mode mode);
 }

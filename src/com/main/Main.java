@@ -20,7 +20,7 @@ public class Main {
         TimeCounter countdownTimer = new TimeCounter(new CountdownTimerStrategy());
         Application gui = new Application(taskManager, stopWatch, countdownTimer);
         JFrame frame = new JFrame("Task Manager");
-        frame.setPreferredSize(new Dimension(400, 400));;
+        frame.setPreferredSize(new Dimension(400, 440));;
         frame.setContentPane(gui.getMainPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

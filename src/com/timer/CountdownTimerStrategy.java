@@ -68,4 +68,6 @@ public class CountdownTimerStrategy implements TimerStrategy {
     public boolean getIsStopped() { return isStopped; }
     @Override
     public Task getTask() { return task; }
+    @Override
+    public void setMode(Mode mode) {}
 }

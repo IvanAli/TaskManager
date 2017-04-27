@@ -3,6 +3,7 @@ package view;
 import com.task.Priority;
 import com.task.Task;
 import com.task.TaskManager;
+import com.timer.Mode;
 import com.timer.TimeCounter;
 import com.timer.TimerThread;
 
@@ -31,11 +32,12 @@ public class Application {
     private Task currentTask;
     private TimerThread timerThread;
     private JScrollPane scrollPane;
+    private JCheckBox timerMode;
     public Application(TaskManager taskManager, TimeCounter stopWatch, TimeCounter countdownTimer) {
         this.taskManager = taskManager;
         this.stopWatch = stopWatch;
         this.countdownTimer = countdownTimer;
-        int rows = 3, cols = 2;
+        int rows = 4, cols = 2;
         mainPanel = new JPanel(new GridLayout(rows, cols));
         gridPanel = new JPanel[rows][cols];
         for (int i = 0; i < rows; i++) for (int j = 0; j < cols; j++) {
@@ -52,6 +54,8 @@ public class Application {
         saveTasks = new JButton("Save tasks");
         model = new DefaultListModel();
         taskJList = new JList(model);
+        timerMode = new JCheckBox();
+        timerMode.setSelected(true);
         stopWatchLabel = new JLabel("00:00:00");
         countdownLabel = new JLabel("--:--:--");
 
@@ -69,7 +73,10 @@ public class Application {
         gridPanel[1][1].add(startTimer);
         gridPanel[1][1].add(stopTimer);
         gridPanel[1][1].add(resetTimer);
-        gridPanel[2][1].add(saveTasks);
+        gridPanel[2][1].add(timerMode);
+        gridPanel[2][1].add(new JLabel("Stop main timer when"));
+        gridPanel[2][1].add(new JLabel("time remaining hits zero"));
+        gridPanel[3][1].add(saveTasks);
 
         setTaskListeners();
         setTimerListeners();
@@ -126,6 +133,13 @@ public class Application {
 
             }
         });
+        timerMode.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent itemEvent) {
+                if (itemEvent.getStateChange() == 1) stopWatch.setMode(Mode.LIMITED);
+                else stopWatch.setMode(Mode.UNLIMITED);
+            }
+        });
     }
     private void setTaskListeners() {
 //        MouseListener mouseListener = new MouseAdapter() {
@@ -147,7 +161,6 @@ public class Application {
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
                 boolean adjust = listSelectionEvent.getValueIsAdjusting();
 //                if (adjust) return;
-                System.out.println("OK: " + ok);
                 if (ok) {
                     ok = false;
                     return;
@@ -156,7 +169,7 @@ public class Application {
                 int selected = list.getSelectedIndex();
                 int previous = selected == listSelectionEvent.getFirstIndex() ? listSelectionEvent.getLastIndex() : listSelectionEvent.getFirstIndex();
                 if (!adjust) {
-                    if (!stopWatch.getIsStopped()) {
+                    if (!stopWatch.getIsStopped() && previous != -1) {
                         ok = true;
                         System.out.println("ok now: " + ok);
                         JOptionPane.showMessageDialog(mainPanel, "You have not stopped the clock");
@@ -262,7 +275,9 @@ public class Application {
                             taskTime = Integer.parseInt(jTaskTime.getText());
                             try {
                                 int id = taskManager.parseId(taskJList.getSelectedValue().toString());
-//                                currentTask = taskManager.modifyTask(id, taskName, taskPriority, taskTime);
+                                currentTask = taskManager.modifyTask(id, taskName, taskPriority, taskTime);
+                                stopWatch.associate(currentTask);
+                                countdownTimer.associate(currentTask);
 //                                timerThread.setCurrentTask(currentTask);
                                 System.out.println("Task successfully modified");
                                 updateTaskJList();
@@ -316,7 +331,7 @@ public class Application {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 taskManager.saveTasks();
-                JOptionPane.showMessageDialog(null, "Tasks have been successfully saved");
+                JOptionPane.showMessageDialog(mainPanel, "Tasks have been successfully saved");
             }
         });
     }
