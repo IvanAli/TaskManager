@@ -1,5 +1,6 @@
 package com.task;
 
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,7 +9,7 @@ import java.util.Collections;
 /**
  * Created by ivan on 25/04/17.
  */
-public class TaskManager {
+public class TaskManager implements Serializable {
     private ArrayList<Task> taskList;
     public TaskManager() {
         taskList = new ArrayList<>();
@@ -72,9 +73,15 @@ public class TaskManager {
         else throw new Exception();
     }
     private void loadTasks() {
-
+        try {
+            ObjectInputStream stream = new ObjectInputStream(new FileInputStream("tasks.data"));
+            taskList = (ArrayList<Task>)stream.readObject();
+        } catch (Exception e) {}
     }
-    public void writeTasks() {
-
+    public void saveTasks() {
+        try {
+            ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("tasks.data"));
+            stream.writeObject(taskList);
+        } catch (Exception e) {}
     }
 }

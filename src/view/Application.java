@@ -3,6 +3,7 @@ package view;
 import com.task.Priority;
 import com.task.Task;
 import com.task.TaskManager;
+import com.timer.TimeCounter;
 import com.timer.TimerThread;
 
 import javax.swing.*;
@@ -19,35 +20,44 @@ import javax.swing.event.ListSelectionListener;
 public class Application {
     private JPanel mainPanel;
     private TaskManager taskManager;
+    private TimeCounter stopWatch, countdownTimer;
     private JPanel[][] gridPanel;
     private DefaultListModel model;
     private JButton addTaskBtn, deleteTaskBtn, modifyTaskBtn;
     private JList taskJList;
     private JLabel stopWatchLabel, countdownLabel;
     private JButton startTimer, stopTimer, resetTimer;
+    private JButton saveTasks;
     private Task currentTask;
     private TimerThread timerThread;
-    public Application(TaskManager taskManager) {
+    private JScrollPane scrollPane;
+    public Application(TaskManager taskManager, TimeCounter stopWatch, TimeCounter countdownTimer) {
         this.taskManager = taskManager;
-        mainPanel = new JPanel(new GridLayout(2, 2));
-        gridPanel = new JPanel[2][2];
-        for (int i = 0; i < 2; i++) for (int j = 0; j < 2; j++) {
+        this.stopWatch = stopWatch;
+        this.countdownTimer = countdownTimer;
+        int rows = 3, cols = 2;
+        mainPanel = new JPanel(new GridLayout(rows, cols));
+        gridPanel = new JPanel[rows][cols];
+        for (int i = 0; i < rows; i++) for (int j = 0; j < cols; j++) {
             gridPanel[i][j] = new JPanel();
             mainPanel.add(gridPanel[i][j]);
         }
 
-        addTaskBtn = new JButton("Add new task");
+        addTaskBtn = new JButton("   Add a new task   ");
         modifyTaskBtn = new JButton("Modify selected task");
         deleteTaskBtn = new JButton("Delete selected task");
         startTimer = new JButton("Play");
         stopTimer = new JButton("Stop");
         resetTimer = new JButton("Reset");
+        saveTasks = new JButton("Save tasks");
         model = new DefaultListModel();
         taskJList = new JList(model);
         stopWatchLabel = new JLabel("00:00:00");
         countdownLabel = new JLabel("--:--:--");
 
-//        model.add(2, "Code all night");
+        taskJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        taskJList.setFixedCellWidth(170);
+
         gridPanel[0][0].add(taskJList);
         gridPanel[0][1].add(addTaskBtn);
         gridPanel[0][1].add(modifyTaskBtn);
@@ -59,31 +69,15 @@ public class Application {
         gridPanel[1][1].add(startTimer);
         gridPanel[1][1].add(stopTimer);
         gridPanel[1][1].add(resetTimer);
+        gridPanel[2][1].add(saveTasks);
 
         setTaskListeners();
         setTimerListeners();
 
-        timerThread = new TimerThread(currentTask, stopWatchLabel, countdownLabel);
+        updateTaskJList();
+
+        timerThread = new TimerThread(stopWatch, countdownTimer, stopWatchLabel, countdownLabel);
         timerThread.start();
-
-        updateTimers();
-    }
-
-    private void updateTimers() {
-        while (true) {
-            if (1 == 1) break;
-            if (currentTask != null) {
-                currentTask.getStopWatch().run();
-                currentTask.getCountdownTimer().run();
-                Date date; String formattedDate;
-                date = new Date((long)currentTask.getRunningTime());
-                formattedDate = new SimpleDateFormat("HH/mm/ss").format(date);
-                stopWatchLabel.setText(formattedDate);
-                date = new Date((long)currentTask.getCountdownTimer().getCurrentTime());
-                formattedDate = new SimpleDateFormat("HH/mm/ss").format(date);
-                countdownLabel.setText(formattedDate);
-            }
-        }
     }
 
     private void setTimerListeners() {
@@ -134,53 +128,52 @@ public class Application {
         });
     }
     private void setTaskListeners() {
-        MouseListener mouseListener = new MouseAdapter() {
-            public void mouseClicked(MouseEvent mouseEvent) {
-                JList theList = (JList) mouseEvent.getSource();
-                if (mouseEvent.getClickCount() == 2) {
-                    int index = theList.locationToIndex(mouseEvent.getPoint());
-                    if (index >= 0) {
-                        Object o = theList.getModel().getElementAt(index);
-                        System.out.println("Double-clicked on: " + o.toString());
-                    }
-                }
-            }
-        };
-        taskJList.addMouseListener(mouseListener);
+//        MouseListener mouseListener = new MouseAdapter() {
+//            public void mouseClicked(MouseEvent mouseEvent) {
+//                JList theList = (JList) mouseEvent.getSource();
+//                if (mouseEvent.getClickCount() == 2) {
+//                    int index = theList.locationToIndex(mouseEvent.getPoint());
+//                    if (index >= 0) {
+//                        Object o = theList.getModel().getElementAt(index);
+//                        System.out.println("Double-clicked on: " + o.toString());
+//                    }
+//                }
+//            }
+//        };
+//        taskJList.addMouseListener(mouseListener);
 
         ListSelectionListener listSelectionListener = new ListSelectionListener() {
+            boolean ok = false;
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                System.out.print("First index: " + listSelectionEvent.getFirstIndex());
-                System.out.print(", Last index: " + listSelectionEvent.getLastIndex());
-                boolean changed = listSelectionEvent.getFirstIndex() != listSelectionEvent.getLastIndex();
-                if (changed) {
-                    if (currentTask != null && !currentTask.getStopWatch().getIsStopped()) {
-                        JOptionPane.showMessageDialog(null, "You have not stopped the clock");
-                        taskJList.setSelectedIndex(listSelectionEvent.getFirstIndex());
+                boolean adjust = listSelectionEvent.getValueIsAdjusting();
+//                if (adjust) return;
+                System.out.println("OK: " + ok);
+                if (ok) {
+                    ok = false;
+                    return;
+                }
+                JList list = (JList) listSelectionEvent.getSource();
+                int selected = list.getSelectedIndex();
+                int previous = selected == listSelectionEvent.getFirstIndex() ? listSelectionEvent.getLastIndex() : listSelectionEvent.getFirstIndex();
+                if (!adjust) {
+                    if (!stopWatch.getIsStopped()) {
+                        ok = true;
+                        System.out.println("ok now: " + ok);
+                        JOptionPane.showMessageDialog(mainPanel, "You have not stopped the clock");
+                        taskJList.setSelectedIndex(previous);
                         return;
                     }
-                }
-                boolean adjust = listSelectionEvent.getValueIsAdjusting();
-                System.out.println(", Adjusting? " + adjust);
-                try {
-                    synchronized (this) {
-                        int id = taskManager.parseId(taskJList.getSelectedValue().toString());
-                        currentTask = taskManager.getTask(id);
-                        timerThread.setCurrentTask(currentTask);
-                    }
-
-                } catch (Exception e) {}
-                if (!adjust) {
-                    JList list = (JList) listSelectionEvent.getSource();
-                    int selections[] = list.getSelectedIndices();
-                    Object selectionValues[] = list.getSelectedValues();
-                    for (int i = 0, n = selections.length; i < n; i++) {
-                        if (i == 0) {
-                            System.out.print("  Selections: ");
+                    try {
+                        synchronized (this) {
+                            int id = taskManager.parseId(taskJList.getSelectedValue().toString());
+                            currentTask = taskManager.getTask(id);
+                            stopWatch.associate(currentTask);
+                            countdownTimer.associate(currentTask);
+//                        timerThread.setCurrentTask(currentTask);
                         }
-                        System.out.print(selections[i] + "/" + selectionValues[i] + " ");
+
+                    } catch (Exception e) {
                     }
-                    System.out.println();
                 }
             }
         };
@@ -216,7 +209,7 @@ public class Application {
                             System.out.println("Task successfully added");
                             updateTaskJList();
                         } catch (NumberFormatException e) {
-
+                            JOptionPane.showMessageDialog(mainPanel, "Task time is not a valid number", "Invalid time", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 }
@@ -243,7 +236,7 @@ public class Application {
                     int id = taskManager.parseId(taskJList.getSelectedValue().toString());
                     taskName = taskManager.getTask(id).getName();
                     jTaskName.setText(taskName);
-                    taskTime = taskManager.getTask(id).getTaskTime();
+                    taskTime = taskManager.getTask(id).getTaskTime() / 60;
                     jTaskTime.setText(String.valueOf(taskTime));
                     taskPriority = taskManager.getTask(id).getPriority();
                     jTaskPriority.setSelectedIndex(taskPriority.ordinal());
@@ -269,15 +262,15 @@ public class Application {
                             taskTime = Integer.parseInt(jTaskTime.getText());
                             try {
                                 int id = taskManager.parseId(taskJList.getSelectedValue().toString());
-                                currentTask = taskManager.modifyTask(id, taskName, taskPriority, taskTime);
-                                timerThread.setCurrentTask(currentTask);
+//                                currentTask = taskManager.modifyTask(id, taskName, taskPriority, taskTime);
+//                                timerThread.setCurrentTask(currentTask);
                                 System.out.println("Task successfully modified");
                                 updateTaskJList();
                             } catch (Exception e) {
 
                             }
                         } catch (NumberFormatException e) {
-
+                            JOptionPane.showMessageDialog(mainPanel, "Task time is not a valid number", "Invalid time", JOptionPane.ERROR_MESSAGE);
                         }
 
                     }
@@ -305,7 +298,9 @@ public class Application {
                             stopWatchLabel.setText("00:00:00");
                             countdownLabel.setText("--:--:--");
                             currentTask = null;
-                            timerThread.setCurrentTask(currentTask);
+                            stopWatch.associate(currentTask);
+                            countdownTimer.associate(currentTask);
+//                            timerThread.setCurrentTask(currentTask);
                         }
                         taskManager.deleteTask(id);
                         System.out.println("Task successfully deleted");
@@ -314,6 +309,14 @@ public class Application {
 
                     }
                 }
+            }
+        });
+
+        saveTasks.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                taskManager.saveTasks();
+                JOptionPane.showMessageDialog(null, "Tasks have been successfully saved");
             }
         });
     }

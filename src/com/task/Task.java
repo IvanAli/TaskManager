@@ -4,17 +4,18 @@ import com.timer.CountdownTimerStrategy;
 import com.timer.StopWatchStrategy;
 import com.timer.TimeCounter;
 
+import java.io.Serializable;
+
 /**
  * Created by ivan on 25/04/17.
  */
 
-public class Task implements Comparable<Task> {
+public class Task implements Comparable<Task>, Serializable {
     private int id;
     private Priority priority;
     private String name;
     private int taskTime;
     private int runningTime;
-    private TimeCounter stopWatch, countdownTimer;
     public Task(int id, String name, Priority priority, int taskTime) {
         this.id = id;
         this.name = name;
@@ -22,8 +23,6 @@ public class Task implements Comparable<Task> {
         taskTime *= 60;
         this.setTaskTime(taskTime);
         this.setRunningTime(0);
-        this.stopWatch = new TimeCounter(new StopWatchStrategy(this));
-        this.countdownTimer = new TimeCounter(new CountdownTimerStrategy(this));
     }
     public Task(Task task) {
         this.id = task.id;
@@ -31,12 +30,6 @@ public class Task implements Comparable<Task> {
         this.name = task.name;
         this.taskTime = task.taskTime;
         this.runningTime = task.runningTime;
-    }
-    public TimeCounter getStopWatch() {
-        return stopWatch;
-    }
-    public TimeCounter getCountdownTimer() {
-        return countdownTimer;
     }
     public void incrementRunningTime(int amount) {
         runningTime += amount;

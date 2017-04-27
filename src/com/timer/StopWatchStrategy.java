@@ -18,14 +18,10 @@ public class StopWatchStrategy implements TimerStrategy {
     private Task task;
     private boolean isReady;
     private boolean isStopped;
-    public StopWatchStrategy(Task task) {
-        this.task = task;
+    public StopWatchStrategy() {
         this.mode = LIMITED;
         this.isStopped = true;
         this.isReady = false;
-        initialTime = 0;
-        currentTime = 0;
-        targetTime = task.getTaskTime();
     }
     public StopWatchStrategy(Mode mode) {
         this.mode = mode;
@@ -74,7 +70,12 @@ public class StopWatchStrategy implements TimerStrategy {
     @Override
     public void associate(Task task) {
         this.task = task;
+        initialTime = 0;
+        targetTime = task.getTaskTime();
+        currentTime = initialTime;
     }
     @Override
     public boolean getIsStopped() { return isStopped; }
+    @Override
+    public Task getTask() { return task; }
 }

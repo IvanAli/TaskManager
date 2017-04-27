@@ -40,4 +40,7 @@ public class TimeCounter {
     public boolean getIsStopped() {
         return strategy.getIsStopped();
     }
+    public Task getTask() {
+        return strategy.getTask();
+    }
 }

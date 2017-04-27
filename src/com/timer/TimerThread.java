@@ -10,10 +10,13 @@ import java.util.Date;
  * Created by ivan on 26/04/17.
  */
 public class TimerThread extends Thread {
-    private Task currentTask;
+    private TimeCounter stopWatch, countdownTimer;
     private JLabel stopWatchLabel, countdownLabel;
-    public TimerThread(Task task, JLabel stopLabel, JLabel countLabel) {
-        this.currentTask = task;
+    private Task currentTask;
+    public TimerThread(TimeCounter stopWatch, TimeCounter countdownTimer, JLabel stopLabel, JLabel countLabel) {
+        this.stopWatch = stopWatch;
+        this.countdownTimer = countdownTimer;
+        currentTask = stopWatch.getTask();
         stopWatchLabel = stopLabel;
         countdownLabel = countLabel;
     }
@@ -24,22 +27,21 @@ public class TimerThread extends Thread {
         return String.format("%02d:%02d:%02d", hour, minute, second);
     }
     private void setLabels() {
-        Date date; String formattedDate;
-        date = new Date((long)currentTask.getRunningTime() * 1000);
+        String formattedDate;
         formattedDate = secondsToString(currentTask.getRunningTime());
         stopWatchLabel.setText(formattedDate);
-        date = new Date((long)currentTask.getCountdownTimer().getCurrentTime() * 1000);
-        formattedDate = secondsToString(currentTask.getCountdownTimer().getCurrentTime());
+        formattedDate = secondsToString(countdownTimer.getCurrentTime());
         countdownLabel.setText(formattedDate);
     }
     @Override
     public void run() {
         while (true) {
+            currentTask = stopWatch.getTask();
             synchronized (this) {
                 if (currentTask != null) {
-                    System.out.println("cur task id: " + currentTask.getId() + " time: " + currentTask.getTaskTime());
-                    currentTask.getStopWatch().run();
-                    currentTask.getCountdownTimer().run();
+//                    System.out.println("cur task id: " + currentTask.getId() + " time: " + currentTask.getTaskTime());
+                    stopWatch.run();
+                    countdownTimer.run();
                     setLabels();
                 }
             }
@@ -47,20 +49,20 @@ public class TimerThread extends Thread {
     }
     public void startTimers() {
         try {
-            currentTask.getStopWatch().start();
-            currentTask.getCountdownTimer().start();
+            stopWatch.start();
+            countdownTimer.start();
         } catch (Exception e) {}
     }
     public void stopTimers() {
         try {
-            currentTask.getStopWatch().stop();
-            currentTask.getCountdownTimer().stop();
+            stopWatch.stop();
+            countdownTimer.stop();
         } catch (Exception e) {}
     }
     public void resetTimers() {
         try {
-            currentTask.getStopWatch().reset();
-            currentTask.getCountdownTimer().reset();
+            stopWatch.reset();
+            countdownTimer.reset();
         } catch (Exception e) {}
     }
     public void setCurrentTask(Task task) {

@@ -14,13 +14,9 @@ public class CountdownTimerStrategy implements TimerStrategy {
     private Task task;
     private boolean isStopped;
     private boolean isReady;
-    public CountdownTimerStrategy(Task task) {
-        this.task = task;
+    public CountdownTimerStrategy() {
         this.isStopped = true;
         this.isReady = false;
-        initialTime = task.getTaskTime();
-        currentTime = initialTime;
-        targetTime = 0;
     }
     @Override
     public long getInitialTime() {
@@ -64,7 +60,12 @@ public class CountdownTimerStrategy implements TimerStrategy {
     @Override
     public void associate(Task task) {
         this.task = task;
+        initialTime = task.getTaskTime();
+        targetTime = 0;
+        currentTime = initialTime;
     }
     @Override
     public boolean getIsStopped() { return isStopped; }
+    @Override
+    public Task getTask() { return task; }
 }

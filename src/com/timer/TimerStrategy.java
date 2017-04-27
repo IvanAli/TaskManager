@@ -15,4 +15,5 @@ public interface TimerStrategy {
     public void reset();
     public void associate(Task task);
     public boolean getIsStopped();
+    public Task getTask();
 }

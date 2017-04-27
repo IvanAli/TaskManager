@@ -15,27 +15,16 @@ public class Main {
 
     public static void main(String[] args) {
 	    // write your code here
-//        Tester tester = new Tester();
-//        tester.go();
         TaskManager taskManager = new TaskManager();
-//        TaskManagerGUI gui = new TaskManagerGUI(taskManager);
-        Application gui = new Application(taskManager);
+        TimeCounter stopWatch = new TimeCounter(new StopWatchStrategy());
+        TimeCounter countdownTimer = new TimeCounter(new CountdownTimerStrategy());
+        Application gui = new Application(taskManager, stopWatch, countdownTimer);
         JFrame frame = new JFrame("Task Manager");
         frame.setPreferredSize(new Dimension(400, 400));;
         frame.setContentPane(gui.getMainPanel());
-//        frame.setContentPane(gui.getTaskPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        /*while (true) {
-            for (Task t : taskManager.getTaskList()) {
-                if (!t.getStopWatch().getIsStopped()) {
-                    t.getStopWatch().run();
-                }
-                if (!t.getCountdownTimer().getIsStopped()) {
-                    t.getCountdownTimer().run();
-                }
-            }
-        }*/
+        frame.setResizable(false);
     }
 }
