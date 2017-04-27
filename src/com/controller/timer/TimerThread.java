@@ -10,6 +10,7 @@ import java.io.IOException;
 
 /**
  * Created by ivan on 26/04/17.
+ * Class responsible for running the timers and updating the GUI labels that correspond to time
  */
 public class TimerThread extends Thread {
     private JPanel mainPanel;
@@ -24,12 +25,22 @@ public class TimerThread extends Thread {
         stopWatchLabel = stopLabel;
         countdownLabel = countLabel;
     }
+
+    /**
+     * Converts seconds to a formatted time string (hh:mm:ss)
+     * @param seconds
+     * @return
+     */
     private String secondsToString(long seconds) {
         long hour = seconds / 3600;
         long minute = (seconds % 3600) / 60;
         long second = (seconds % 3600) % 60;
         return String.format("%02d:%02d:%02d", hour, minute, second);
     }
+
+    /**
+     * Sets the time in the GUI for the stopwatch timer and the countdown timer
+     */
     private void setLabels() {
         String formattedDate;
         formattedDate = secondsToString(currentTask.getRunningTime());
@@ -37,6 +48,10 @@ public class TimerThread extends Thread {
         formattedDate = secondsToString(countdownTimer.getCurrentTime());
         countdownLabel.setText(formattedDate);
     }
+
+    /**
+     * Plays the alarm file when countdown timer hits zero
+     */
     private void playAlarm() {
         String soundName = "alarm.wav";
         try {
@@ -51,13 +66,16 @@ public class TimerThread extends Thread {
             e1.printStackTrace();
         }
     }
+
+    /**
+     * Runs both timers until they are either stopped or the countdown timer hits zero
+     */
     @Override
     public void run() {
         while (true) {
             currentTask = stopWatch.getTask();
             synchronized (this) {
                 if (currentTask != null) {
-//                    System.out.println("cur task id: " + currentTask.getId() + " time: " + currentTask.getTaskTime());
                     stopWatch.run();
                     boolean isZero = countdownTimer.run();
                     if (isZero) {
@@ -69,25 +87,34 @@ public class TimerThread extends Thread {
             }
         }
     }
+
+    /**
+     * Starts both timers
+     */
     public void startTimers() {
         try {
             stopWatch.start();
             countdownTimer.start();
         } catch (Exception e) {}
     }
+
+    /**
+     * Stops both timers
+     */
     public void stopTimers() {
         try {
             stopWatch.stop();
             countdownTimer.stop();
         } catch (Exception e) {}
     }
+
+    /**
+     * Resets both timers
+     */
     public void resetTimers() {
         try {
             stopWatch.reset();
             countdownTimer.reset();
         } catch (Exception e) {}
-    }
-    public void setCurrentTask(Task task) {
-        currentTask = task;
     }
 }

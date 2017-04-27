@@ -4,6 +4,7 @@ import com.model.task.Task;
 
 /**
  * Created by ivan on 25/04/17.
+ * Implements the TimerStrategy interface such that it works as a decreasing timer
  */
 public class CountdownTimerStrategy implements TimerStrategy {
     final static int SEC = 1000;

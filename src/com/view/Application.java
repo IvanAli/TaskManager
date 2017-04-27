@@ -3,7 +3,9 @@ package com.view;
 import com.model.task.Priority;
 import com.model.task.Task;
 import com.controller.task.TaskManager;
+import com.model.timer.CountdownTimerStrategy;
 import com.model.timer.Mode;
+import com.model.timer.StopWatchStrategy;
 import com.model.timer.TimeCounter;
 import com.controller.timer.TimerThread;
 
@@ -18,6 +20,7 @@ import javax.swing.event.ListSelectionListener;
  * Created by ivan on 25/04/17.
  */
 public class Application {
+    private static Application instance;
     private JPanel mainPanel;
     private TaskManager taskManager;
     private TimeCounter stopWatch, countdownTimer;
@@ -86,6 +89,23 @@ public class Application {
         timerThread.start();
     }
 
+    /**
+     * Singleton pattern. Returns the existing instance or creates a new one if it doesn't exist
+     * @return
+     */
+    public static synchronized Application getInstance() {
+        if (instance == null) {
+            TaskManager taskManager = new TaskManager();
+            TimeCounter stopWatch = new TimeCounter(new StopWatchStrategy());
+            TimeCounter countdownTimer = new TimeCounter(new CountdownTimerStrategy());
+            instance = new Application(taskManager, stopWatch, countdownTimer);
+        }
+        return instance;
+    }
+
+    /**
+     * Observer and command pattern. Registers action listeners for the task buttons to allow events to be triggered when they are pressed and implements them
+     */
     private void setTimerListeners() {
         startTimer.addActionListener(new ActionListener() {
             @Override
@@ -137,6 +157,9 @@ public class Application {
             }
         });
     }
+    /**
+     * Observer and command pattern. Registers action listeners for the task buttons to allow events to be triggered when they are pressed and implements them
+     */
     private void setTaskListeners() {
         ListSelectionListener listSelectionListener = new ListSelectionListener() {
             boolean ok = false;
@@ -328,6 +351,10 @@ public class Application {
         });
     }
 
+    /**
+     * Iterator pattern: Iterates through the task list using pre-existing efficient range iterators
+     * Clone pattern: Guarantees a deep copy of the task list, which is then sorted by priority and displayed in the GUI's JList
+     */
     private void updateTaskJList() {
         model.removeAllElements();
         ArrayList<Task> taskList = taskManager.getTaskList();
@@ -339,6 +366,11 @@ public class Application {
             model.add(i, String.valueOf(t.getId()) + ' ' + t.getName());
         }
     }
+
+    /**
+     * Returns the JPanel of the application
+     * @return
+     */
     public JPanel getMainPanel() {
         return mainPanel;
     }

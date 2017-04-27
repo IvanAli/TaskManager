@@ -4,6 +4,7 @@ import com.model.task.Task;
 
 /**
  * Created by ivan on 25/04/17.
+ * Context class that picks the correct timer strategy depending on how it was instantiated
  */
 public class TimeCounter {
     private TimerStrategy strategy;
